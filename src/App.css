@@ -12,7 +12,8 @@
 .display {
     background: #202020;  
     color: white;  
-    padding-right: 10px;  
+    padding-right: 10px; 
+    padding-bottom: 50px; 
     font-weight: 100;  
     font-size: 4em;  
     line-height: 90px;  
