@@ -1,0 +1,43 @@
+.App {  
+  display: flex;  
+  justify-content: center;  
+  padding-top: 5%;
+}
+.calculator {
+  font-family: 'Open Sans', sans-serif;
+  width: 300px;
+  display: flex;  
+  flex-wrap: wrap;
+}
+.display {
+    background: #202020;  
+    color: white;  
+    padding-right: 10px;  
+    font-weight: 100;  
+    font-size: 4em;  
+    line-height: 90px;  
+    justify-content: flex-end;  
+    display: flex;  
+    flex-wrap: wrap;  
+    flex: 1 100%;  
+    border: 1px solid black;
+    height: 100px;
+}
+.buttons {  
+    line-height: 60px;  
+    font-size: 1.25em;  
+    border: 1px solid black;  
+    cursor: pointer;  
+    display: flex;  
+    flex-wrap: wrap;  
+    flex: 0 1 100%;
+  }
+  button {  
+    background: #D0D2D4;  
+    color: black;  
+    display: flex;  
+    justify-content: center;  
+    flex: 0 1 25%;
+    width: 80px;
+    height: 65px;
+  }

@@ -19,7 +19,7 @@ class Buttons extends Component {
         <button id="one" value="1">1</button>
         <button id="two" value="2">2</button>
         <button id="three" value="3">3</button>
-        <button id="zero" value="0">0</button>
+        <button id="zero" className="zero" value="0">0</button>
         <button id="decimal" value=".">.</button>
       </div>
     )
