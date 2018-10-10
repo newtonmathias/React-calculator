@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 
 class Display extends Component {
   render() {
-    let {result} = this.props;
+    let {displayValue} = this.props;
     return (
       <div className="display">
-        <p>{result}</p>
+        <p>{displayValue}</p>
       </div>
     )
   }

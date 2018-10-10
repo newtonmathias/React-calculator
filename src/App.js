@@ -7,46 +7,23 @@ import Display from './components/Display'
 class App extends Component {
   constructor(){
     super();
-
-    this.state ={
-      result: ""
+    this.state = {
+      displayValue: "0"
     }
+    this.inputDigit = this.inputDigit.bind(this)
   }
-  calculate = () => {
-    try {
-      this.setState({
-        result: (eval(this.state.result) || "") + ""
-      })
-    }catch (e) {
-      this.setState({
-        result: "error"
-      })
-
-    }
-  };
-  handleClick = button => {
-    switch(button) {
-      case "=": this.calculate();
-      break;
-      case "C": this.reset();
-      break;
-      default: this.setState({
-        result : this.state.result + button
-      })
-      break;
-    }
-  }
-  reset = () => {
+  inputDigit (e){
+    const {displayValue} = this.state;
     this.setState({
-      result : ''
-    })
-  };
+      displayValue : displayValue === "0" ? e.target.value: displayValue + e.target.value
+    });
+  }
   render() {
     return (
       <div className="App">
         <div className="calculator">
-          <Display result = {this.state.result}/>
-          <Buttons onClick={this.handleClick}/>
+          <Display displayValue = {this.state.displayValue}/>
+          <Buttons inputDigit={this.inputDigit}/>
         </div>
       </div>
     );
