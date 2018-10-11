@@ -4,7 +4,7 @@ class Buttons extends Component {
   render() {
     return (
       <div className="buttons">
-        <button id="clear" value="C" >C</button>
+        <button id="clear" value="C" onClick={this.props.reset}>C</button>
         <button id="divide" value="/" >/</button>
         <button id="multiply" value="*" >x</button>
         <button id="subtract" value="-" >-</button>
@@ -20,7 +20,7 @@ class Buttons extends Component {
         <button id="two" value="2" onClick={this.props.inputDigit}>2</button>
         <button id="three" value="3" onClick={this.props.inputDigit}>3</button>
         <button id="zero" value="0" onClick={this.props.inputDigit}>0</button>
-        <button id="decimal" value="." >.</button>
+        <button id="decimal" value="." onClick={this.props.inputDot}>.</button>
       </div>
     )
   }

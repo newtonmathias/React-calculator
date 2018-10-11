@@ -11,6 +11,8 @@ class App extends Component {
       displayValue: "0"
     }
     this.inputDigit = this.inputDigit.bind(this)
+    this.inputDot = this.inputDot.bind(this)
+    this.reset = this.reset.bind(this)
   }
   inputDigit (e){
     const {displayValue} = this.state;
@@ -18,12 +20,28 @@ class App extends Component {
       displayValue : displayValue === "0" ? e.target.value: displayValue + e.target.value
     });
   }
+  inputDot (e){
+    const {displayValue} = this.state;
+
+    if (displayValue.indexOf('.') === -1) {
+      this.setState({
+        displayValue : displayValue + e.target.value
+      })
+    }
+  }
+  reset (){
+    this.setState({
+      displayValue : '0'
+    })
+  }
   render() {
     return (
       <div className="App">
         <div className="calculator">
           <Display displayValue = {this.state.displayValue}/>
-          <Buttons inputDigit={this.inputDigit}/>
+          <Buttons inputDigit = {this.inputDigit} 
+                   inputDot = {this.inputDot}
+                   reset = {this.reset}/>
         </div>
       </div>
     );
