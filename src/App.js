@@ -8,30 +8,55 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      displayValue: "0"
+      displayValue: "0",
+      waitingForOperand: false,
+      operator: null
     }
     this.inputDigit = this.inputDigit.bind(this)
     this.inputDot = this.inputDot.bind(this)
     this.reset = this.reset.bind(this)
+    this.operate = this.operate.bind(this)
   }
   inputDigit (e){
-    const {displayValue} = this.state;
-    this.setState({
-      displayValue : displayValue === "0" ? e.target.value: displayValue + e.target.value
-    });
+    const { displayValue, waitingForOperand } = this.state;
+
+    if (waitingForOperand){
+      this.setState({
+        displayValue:  e.target.value,
+        waitingForOperand: false
+      })
+    } else {
+      this.setState({
+        displayValue : displayValue === "0" ? e.target.value: displayValue + e.target.value
+      });
+    }
+
   }
   inputDot (e){
-    const {displayValue} = this.state;
+    const { displayValue, waitingForOperand } = this.state;
 
-    if (displayValue.indexOf('.') === -1) {
+    if (waitingForOperand){
       this.setState({
-        displayValue : displayValue + e.target.value
+        displayValue: e.target.value,
+        waitingForOperand: false
+      })
+
+    } else if (displayValue.indexOf('.') === -1) {
+      this.setState({
+        displayValue : displayValue + e.target.value,
+        waitingForOperand : false
       })
     }
   }
   reset (){
     this.setState({
       displayValue : '0'
+    })
+  }
+  operate (e){
+    this.setState({
+      waitingForOperand: true,
+      operator: e.target.value
     })
   }
   render() {
@@ -41,7 +66,8 @@ class App extends Component {
           <Display displayValue = {this.state.displayValue}/>
           <Buttons inputDigit = {this.inputDigit} 
                    inputDot = {this.inputDot}
-                   reset = {this.reset}/>
+                   reset = {this.reset}
+                   operate = {this.operate}/>
         </div>
       </div>
     );
