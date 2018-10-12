@@ -54,6 +54,15 @@ class App extends Component {
     })
   }
   operate (e){
+    const { displayValue } = this.state;
+
+    const operatorations = {
+      '/': (prevValue, nextValue) => prevValue / nextValue,
+      '*': (prevValue, nextValue) => prevValue * nextValue,
+      '+': (prevValue, nextValue) => prevValue + nextValue,
+      '-': (prevValue, nextValue) => prevValue - nextValue,
+      '=': (prevValue, nextValue) => nextValue
+    }
     this.setState({
       waitingForOperand: true,
       operator: e.target.value
