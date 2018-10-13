@@ -58,7 +58,7 @@ class App extends Component {
     })
   }
   operate (e){
-    const { displayValue, value } = this.state;
+    const { displayValue, operator, value } = this.state;
     const nextValue = parseFloat(displayValue)
 
     const operations = {
@@ -73,9 +73,9 @@ class App extends Component {
       this.setState({
         value: nextValue
       })
-    } else if (e.target.value) {
+    } else if (operator) {
       const currentValue = value || 0
-      const computedValue = operations[e.target.value](currentValue, nextValue)
+      const computedValue = operations[operator](currentValue, nextValue)
 
       this.setState({
         value: computedValue,
