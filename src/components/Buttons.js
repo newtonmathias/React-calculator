@@ -15,7 +15,7 @@ class Buttons extends Component {
         <button id="four" value="4" onClick={this.props.inputDigit}>4</button>
         <button id="five" value="5" onClick={this.props.inputDigit}>5</button>
         <button id="six" value="6" onClick={this.props.inputDigit}>6</button>
-        <button id="equals" value="=" >=</button>
+        <button id="equals" value="=" onClick={this.props.operate}>=</button>
         <button id="one" value="1" onClick={this.props.inputDigit}>1</button>
         <button id="two" value="2" onClick={this.props.inputDigit}>2</button>
         <button id="three" value="3" onClick={this.props.inputDigit}>3</button>

@@ -8,6 +8,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
+      value: null,
       displayValue: "0",
       waitingForOperand: false,
       operator: null
@@ -50,18 +51,36 @@ class App extends Component {
   }
   reset (){
     this.setState({
-      displayValue : '0'
+      value: null,
+      displayValue: "0",
+      waitingForOperand: false,
+      operator: null
     })
   }
   operate (e){
-    const { displayValue } = this.state;
+    const { displayValue, value } = this.state;
+    const nextValue = parseFloat(displayValue)
 
-    const operatorations = {
+    const operations = {
       '/': (prevValue, nextValue) => prevValue / nextValue,
       '*': (prevValue, nextValue) => prevValue * nextValue,
       '+': (prevValue, nextValue) => prevValue + nextValue,
       '-': (prevValue, nextValue) => prevValue - nextValue,
       '=': (prevValue, nextValue) => nextValue
+    }
+
+    if (value == null) {
+      this.setState({
+        value: nextValue
+      })
+    } else if (e.target.value) {
+      const currentValue = value || 0
+      const computedValue = operations[e.target.value](currentValue, nextValue)
+
+      this.setState({
+        value: computedValue,
+        displayValue: String(computedValue)
+      })
     }
     this.setState({
       waitingForOperand: true,
