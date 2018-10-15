@@ -17,6 +17,8 @@ class App extends Component {
     this.inputDot = this.inputDot.bind(this)
     this.reset = this.reset.bind(this)
     this.operate = this.operate.bind(this)
+    this.inputPercent = this.inputPercent.bind(this)
+    this.toggleSign = this.toggleSign.bind(this)
   }
   inputDigit (e){
     const { displayValue, waitingForOperand } = this.state;
@@ -32,6 +34,29 @@ class App extends Component {
       });
     }
 
+  }
+  inputPercent() {
+    const { displayValue } = this.state
+    const currentValue = parseFloat(displayValue)
+    
+    if (currentValue === 0)
+      return
+    
+    const fixedDigits = displayValue.replace(/^-?\d*\.?/, '')
+    const newValue = parseFloat(displayValue) / 100
+    
+    this.setState({
+      displayValue: String(newValue.toFixed(fixedDigits.length + 2))
+    })
+  }
+    
+  toggleSign() {
+    const { displayValue } = this.state
+    const newValue = parseFloat(displayValue) * -1
+    
+    this.setState({
+      displayValue: String(newValue)
+    })
   }
   inputDot (e){
     const { displayValue, waitingForOperand } = this.state;
@@ -89,15 +114,15 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
         <div className="calculator">
           <Display displayValue = {this.state.displayValue}/>
           <Buttons inputDigit = {this.inputDigit} 
                    inputDot = {this.inputDot}
                    reset = {this.reset}
-                   operate = {this.operate}/>
+                   operate = {this.operate}
+                   inputPercent = {this.inputPercent}
+                   toggleSign = {this.toggleSign}/>
         </div>
-      </div>
     );
   }
 }
